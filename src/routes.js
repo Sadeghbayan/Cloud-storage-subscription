@@ -1,21 +1,18 @@
 import React from 'react';
-import {
-    BrowserRouter,
-    Route,
-    Switch,
-    Redirect
-} from 'react-router-dom'
+import Parameters from './components/Parameters/Parameters';
+import UserInformation from './components/UserInformation/UserInformation';
 
-import Home from './components/Home/Home';
+const routes = [
+    {
+        path: '/',
+        exact: true,
+        component: Parameters,
 
+    },
+    {
+        path: '/user-information',
+        component: UserInformation
+    },
+]
 
-
-const Router = () => (
-    <BrowserRouter>
-        <Switch>
-            <Route path="/" component={Home} />
-        </Switch>
-    </BrowserRouter>
-);
-
-export default Router;
+export default routes;

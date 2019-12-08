@@ -1,0 +1,49 @@
+
+.ant-radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  .ant-radio-button-wrapper{
+    display: flex;
+    flex: 1;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    span{
+      @include size(13);
+    }
+    &.ant-radio-button-wrapper-checked {
+      span{
+        color: $white;
+      }
+    }
+  }
+}
+.ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+  color: #fff;
+  background: $aqua;
+  border-color: $aqua;
+}
+
+.ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover {
+  color: #fff;
+  background: $aqua;
+  border-color: $aqua;
+}
+
+.ant-input-group-lg,
+.textarea-wrapper{
+  .ant-input{
+    border-width: 1px;
+    border-style: solid;
+    border-image: linear-gradient(to right, $aqua, rgba($green,.5)) 1 0%;
+    border-top: 0;
+    font-family: $heading;
+    @include size(12);
+    padding: 7px 0;
+    color: $black;
+    width: 100%;
+  }
+}
+.textarea-wrapper{
+  margin-top: 1rem;
+}

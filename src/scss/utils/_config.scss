@@ -1,0 +1,42 @@
+//
+// Paths & Directories
+//
+$asset_dir: "../src/assets/";
+
+
+// Colors
+
+$logo: #3DBB3D;
+$gray: #777777;
+$black: #070707;
+$green: #7ED386;
+$aqua: #3FB6A8;
+$white: #FFFFFF;
+
+
+$primary_font: 'Nunito Sans', sans-serif;
+$heading: 'Montserrat', sans-serif;
+$body: 'Roboto', sans-serif;
+
+.alignRight {
+  text-align: right;
+}
+
+.floatRight {
+  float: right;
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+ul{
+  li{
+    list-style: none;
+  }
+}

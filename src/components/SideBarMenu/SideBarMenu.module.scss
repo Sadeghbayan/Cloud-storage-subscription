@@ -1,0 +1,27 @@
+@import "../../scss/utils/config";
+@import "../../scss/utils/mixin";
+
+.sidebar{
+  nav{
+    a {
+      list-style: none;
+      padding: 35px;
+      color: $white;
+      @include size(17);
+      display: block;
+      transition: all .3s ease-in-out;
+      &:hover {
+        color: $aqua;
+        transform: scale(1.2);
+        cursor: pointer;
+      }
+      &:first-child {
+        margin-top: 7px;
+      }
+    }
+
+    .active {
+      color: $aqua;
+    }
+  }
+}

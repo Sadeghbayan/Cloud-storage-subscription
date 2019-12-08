@@ -1,0 +1,83 @@
+body {
+  background: linear-gradient(to right, $aqua, $green);
+}
+
+.container {
+  background: $white;
+  width: 540px;
+  height: 420px;
+  margin: 0 auto;
+  position: relative;
+  margin-top: 10%;
+  box-shadow: 2px 5px 20px rgba($gray, .5);
+}
+
+h1 {
+  font-family: $heading;
+  color: $green;
+  font-size: 1em;
+  margin-top: 40px;
+  margin-bottom: 35px;
+}
+
+h2 {
+  color: $gray;
+  font-family: $body;
+  width: 80%;
+  text-transform: uppercase;
+  @include size(11);
+  letter-spacing: 1px;
+  margin-left: 2px;
+}
+
+p {
+  border-width: 1px;
+  border-style: solid;
+  border-image: linear-gradient(to right, $aqua, rgba($green,.5)) 1 0%;
+  border-top: 0;
+  width: 80%;
+  font-family: $heading;
+  font-size: .7em;
+  padding: 7px 0;
+  color: $black;
+}
+span {
+  font-size: .5em;
+  color: $gray;
+}
+
+.fields{
+  margin-bottom: 1.5rem;
+  @include size(17)
+}
+
+.fieldWrapper{
+  padding-right: 1.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.sectionFooter{
+  display: flex;
+  margin-top: auto;
+  justify-content: space-between;
+  button{
+    display: flex;
+    align-items: center;
+    padding: 0;
+  }
+  a{
+    @include size(12);
+    text-transform: uppercase;
+    color: $gray;
+  }
+  i{
+    color: $gray;
+    margin-top: .1rem;
+    @include size(10)
+  }
+}
+.right{
+  justify-content: flex-end;
+}

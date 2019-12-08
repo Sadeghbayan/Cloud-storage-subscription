@@ -1,0 +1,23 @@
+@import "../../scss/utils/config";
+
+.innerWrapper{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.leftbox {
+  flex-basis: 15%;
+  float: left;
+  top: -5%;
+  left: 5%;
+  position: absolute;
+  height: 110%;
+  background: $green;
+  box-shadow: 3px 3px 10px rgba($gray, .5);
+}
+
+.rightbox {
+  flex-basis: 75%;
+  height: 100%;
+  margin-left: auto;
+}

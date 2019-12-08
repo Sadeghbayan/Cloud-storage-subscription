@@ -1,0 +1,25 @@
+@import "../../scss/utils/config";
+@import "../../scss/utils/mixin";
+
+.footer {
+  position: absolute;
+  width: 40%;
+  bottom: 0;
+  right: 5px;
+  text-align: right;
+  @include size(12);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: $body;
+  p {
+    border: none;
+    padding: 0;
+  }
+  a {
+    color: #ffffff;
+    text-decoration: none;
+    &:hover {
+      color: #7d7d7d;
+    }
+  }
+}
