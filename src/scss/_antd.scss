@@ -31,7 +31,8 @@
 }
 
 .ant-input-group-lg,
-.textarea-wrapper{
+.textarea-wrapper,
+.custom-input{
   .ant-input{
     border-width: 1px;
     border-style: solid;
@@ -44,6 +45,8 @@
     width: 100%;
   }
 }
-.textarea-wrapper{
+.textarea-wrapper,
+.custom-input,
+.ant-input-group-lg{
   margin-top: 1rem;
 }

@@ -10,7 +10,7 @@
       @include size(17);
       display: block;
       transition: all .3s ease-in-out;
-      &:hover {
+      &:hover, &.active {
         color: $aqua;
         transform: scale(1.2);
         cursor: pointer;
@@ -18,10 +18,11 @@
       &:first-child {
         margin-top: 7px;
       }
+      &.active {
+        color: $aqua;
+      }
     }
 
-    .active {
-      color: $aqua;
-    }
+
   }
 }

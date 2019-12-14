@@ -37,7 +37,7 @@ class UserInformation extends Component {
                             <Link to="/">Back</Link>
                         </Button>
                         <Button type="link">
-                            <Link to="/user-information">Next</Link>
+                            <Link to="/credit-card">Next</Link>
                             <Icon type="right" />
                         </Button>
                     </div>
