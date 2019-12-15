@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Col, Input, Row, DatePicker, Button, Icon} from "antd";
+import {Col, Input, Row, DatePicker, Button, Icon, Form} from "antd";
 import moment from 'moment';
 import {Link} from "react-router-dom";
 
@@ -15,94 +15,145 @@ class Credit extends Component {
 
     constructor(props) {
         super(props);
-        const value = props.value || {};
-
-        this.state = {
-            number: "",
-            exp:"",
-            security:""
-        };
     }
 
-    cardNumberFormat = e => {
-        var val = e.target.value;
+    cardNumberFormat = (rule, value, callback)  => {
+        let val = value;
         const valArray = val.split(' ').join('').split('');
-        var valSpace = val.split("")
-
+        const valSpace = val.split("")
         // to work with backspace
         if(valSpace[valSpace.length-1] == ' '){
             var valSpaceN = valSpace.slice(0, -2)
             val = valSpaceN.join("")
-            this.setState({ number:val });
-            return;
+            this.props.form.setFieldsValue({
+                cardNumber: val,
+            });
+            return callback();
         }
 
-        if(isNaN(valArray.join('')))
-            return;
-        if(valArray.length === 17)
-            return
-        if(valArray.length % 4 === 0 && valArray.length <= 15) {
-            this.setState({ number: e.target.value + "  " });
-        }else{
-
-            this.setState({ number: e.target.value})
+        if(isNaN(valArray.join(''))){
+            this.props.form.setFieldsValue({
+                cardNumber: "",
+            });
+            return callback()
         }
+        if(valArray.length === 17){
+            this.props.form.setFieldsValue({
+                cardNumber: valSpace.slice(0, 22).join(''),
+            });
+            return callback();
+        }
+        if(val && valArray.length % 4 === 0 && valArray.length <= 15) {
+            this.props.form.setFieldsValue({
+                cardNumber: val + "  ",
+            });
+            return callback()
+        }
+        callback()
 
     }
-    cardSecurityFromat = e => {
-        const val = e.target.value;
+    cardSecurityFromat = (rule, value, callback) => {
+        const val = value;
         const valArray = val.split(' ').join('').split('');
-        if(isNaN(valArray.join('')))
-            return;
-        if(valArray.length === 5){
-            return
-        }else{
-            this.setState({ security: e.target.value})
+        const valSpace = val.split("")
+        if(isNaN(valArray.join(''))){
+            this.props.form.setFieldsValue({
+                cardSec: "",
+            });
+            return callback()
         }
+        if(valArray.length === 5){
+            this.props.form.setFieldsValue({
+                cardSec: valSpace.slice(0, 4).join(''),
+            });
+            return callback()
+        }
+        callback()
+    }
 
+    saveAndContinue = e => {
+        e.preventDefault();
+        this.props.form.validateFields((err, values) => {
+            values.cardNumber = values.cardNumber.split(" ").join("");
+            values.cardExp = values.cardExp._i
+            if (!err) {
+                this.props.addCredit(values);
+                this.props.history.push({
+                    pathname: '/confirm',
+                })
+            }
+        });
     }
 
     render() {
+        const { getFieldDecorator } = this.props.form;
         return (
             <div>
                 <h1>Credit Card</h1>
-                <div className="fieldWrapper">
-                    <section className="fields">
-                        <Col span={24} className="custom-input">
-                            <h2>Card number</h2>
-                            <Input value={this.state.number} onChange={this.cardNumberFormat} />
-                        </Col>
-                        <Col span={24} className="custom-input">
-                            <InputGroup size="large">
-                                <Row gutter={8}>
-                                    <Col span={12}>
-                                        <h2>Card expiration</h2>
-                                        <MonthPicker defaultValue={moment('15/01', monthFormat)} format={monthFormat} />
+                <Form onSubmit={this.saveAndContinue}>
+                    <div className="fieldWrapper">
+                        <section className="fields">
+                            <Col span={24} className="custom-input">
+                                <Form.Item label="Card Number">
+                                    {getFieldDecorator('cardNumber', {
+                                        'initialValue': this.props.credit_info ? this.props.credit_info.cardNumber : "",
+                                        rules: [
+                                            { required: true, message: 'Please input your Card number!' },
+                                            {validator: this.cardNumberFormat},
+                                        ],
+                                    })(
+                                        <Input />
+                                    )}
+                                </Form.Item>
+                            </Col>
+                            <Col span={24} className="custom-input">
+                                <InputGroup size="large">
+                                    <Row gutter={8}>
+                                        <Col span={12}>
+                                            <Form.Item label="Card expiration">
+                                                {getFieldDecorator('cardExp', {
+                                                    'initialValue': this.props.credit_info ? this.props.credit_info.cardExp : moment('15/01', monthFormat),
+                                                    rules: [
+                                                        {required: true, message: 'Please input your Card expiration!' },
+                                                    ],
+                                                })(
+                                                     <MonthPicker format={monthFormat} />
+                                                )}
+                                            </Form.Item>
+                                        </Col>
+                                        <Col span={12}>
+                                            <Form.Item label="Card security code">
+                                                {getFieldDecorator('cardSec', {
+                                                    'initialValue': this.props.credit_info ? this.props.credit_info.cardSec : "",
+                                                    rules: [
+                                                        {required: true, message: 'Please input your Card security code!'},
+                                                        {validator: this.cardSecurityFromat},
+                                                    ],
+                                                })(
+                                                    <Input/>
+                                                )}
+                                            </Form.Item>
+                                        </Col>
+                                    </Row>
+                                </InputGroup>
+                            </Col>
 
-                                    </Col>
-                                    <Col span={12}>
-                                        <h2>Card security code</h2>
-                                        <Input value={this.state.security} onChange={this.cardSecurityFromat}/>
-                                    </Col>
-                                </Row>
-                            </InputGroup>
-                        </Col>
-
-                    </section>
-                    <div className="sectionFooter">
-                        <Button type="link">
-                            <Icon type="left" />
-                            <Link to="/">Back</Link>
-                        </Button>
-                        <Button type="link">
-                            <Link to="/confirm">Next</Link>
-                            <Icon type="right" />
-                        </Button>
+                        </section>
+                        <div className="sectionFooter">
+                            <Button type="link">
+                                <Icon type="left" />
+                                <Link to="/user-information">Back</Link>
+                            </Button>
+                            <Button type="link" htmlType="submit">
+                                Next
+                                <Icon type="right" />
+                            </Button>
+                        </div>
                     </div>
-                </div>
+                </Form>
             </div>
         );
     }
 }
 
-export default Credit;
+export default Form.create()(Credit);

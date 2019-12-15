@@ -1,50 +1,49 @@
 import React, {Component} from 'react';
 import { Radio, Button, Icon, Form } from 'antd';
 import styles from './parameters.module.scss'
-import {Link} from "react-router-dom";
 
 
 class Parameters extends Component {
 
-    state = {
-        Duration:""
-    }
-
-
     saveAndContinue = e => {
-//to="/user-information"
-
-        console.log(this.state)
+        e.preventDefault();
+        this.props.form.validateFields((err, values) => {
+            if (!err) {
+                this.props.addParameters(values);
+                this.props.history.push({
+                    pathname: '/user-information',
+                })
+            }
+        });
     }
 
     render() {
         const { getFieldDecorator } = this.props.form;
-
         return (
             <div>
                 <h1>Parameters</h1>
-                <Form onSubmit={this.handleSubmit}>
+                <Form onSubmit={this.saveAndContinue}>
                     <div className="fieldWrapper">
                         <section className="fields">
                             <h2>
-                                Duration <span className={styles.smallInfo}>(Month)</span>
+                                Duration: <span className={styles.smallInfo}>(Month)</span>
                             </h2>
                             {getFieldDecorator('duration', {
-                                'initialValue':'12'
+                                'initialValue': this.props.parameters ? this.props.parameters.duration : '12'
                             })(
                             <Radio.Group buttonStyle="solid">
-                                <Radio.Button value="3">3 </Radio.Button>
-                                <Radio.Button value="6">6  </Radio.Button>
-                                <Radio.Button value="12">12 </Radio.Button>
+                                <Radio.Button value="3">3</Radio.Button>
+                                <Radio.Button value="6">6</Radio.Button>
+                                <Radio.Button value="12">12</Radio.Button>
                             </Radio.Group>
                             )}
                         </section>
                         <section className="fields">
                             <h2>
-                                Amount<span className={styles.smallInfo}>(Gigabytes)</span>
+                                Amount:<span className={styles.smallInfo}>(Gigabytes)</span>
                             </h2>
                             {getFieldDecorator('amount', {
-                                'initialValue':'5'
+                                'initialValue': this.props.parameters ? this.props.parameters.amount : '5'
                             })(
                             <Radio.Group buttonStyle="solid">
                                 <Radio.Button value="3">3</Radio.Button>
@@ -58,10 +57,10 @@ class Parameters extends Component {
                         </section>
                         <section className="fields">
                             <h2>
-                                Upfront payment
+                                Upfront payment:
                             </h2>
                             {getFieldDecorator('upfront',{
-                                'initialValue':'no'
+                                'initialValue': this.props.parameters ? this.props.parameters.upfront : 'no'
                             })(
                             <Radio.Group buttonStyle="solid">
                                 <Radio.Button value="yes">Yes</Radio.Button>
@@ -70,8 +69,8 @@ class Parameters extends Component {
                             )}
                         </section>
                         <div className="sectionFooter right">
-                            <Button type="link">
-                                <Link onClick={this.saveAndContinue} to="/user-information">Next</Link>
+                            <Button type="link" htmlType="submit">
+                                Next
                                 <Icon type="right" />
                             </Button>
                         </div>

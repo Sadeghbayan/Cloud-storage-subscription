@@ -1,8 +1,8 @@
 import React from 'react';
-import Parameters from './components/Parameters/Parameters';
-import UserInformation from './components/UserInformation/UserInformation';
-import CreditCard from './components/Credit/Credit';
-import Confirm from './components/Confirm/Confirm';
+import Parameters from './components/Parameters/Container/ParametersContainer';
+import UserInformation from './components/UserInformation/Container/UserInformationContainer';
+import CreditCard from './components/Credit/Container/CreditContainer';
+import Confirm from './components/Confirm/Container/ConfirmContainer';
 
 const routes = [
     {

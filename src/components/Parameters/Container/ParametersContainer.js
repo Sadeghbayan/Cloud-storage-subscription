@@ -1,20 +1,18 @@
 import { connect } from 'react-redux';
-import addCityComponent from '../../views/City/AddCity'
-import { addCity } from '../../actions/cityActions'
-import { listProvince } from '../../actions/provinceActions'
+import parametersComponent from '../../Parameters/Parameters'
+import { addParameters } from '../../../store/actions/parameters'
 
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addCity:(city) => dispatch(addCity(city)),
-        listProvince: () => dispatch(listProvince())
+        addParameters:(parameters) => dispatch(addParameters(parameters)),
     }
 }
 const mapStateToProps = (state) => {
     return {
-        listProvinces : state.city
+        parameters : state.subscription.parameters
     }
 }
 
-const CityContainer = connect(mapStateToProps, mapDispatchToProps)(addCityComponent)
-export default CityContainer;
+const ParametersContainer = connect(mapStateToProps, mapDispatchToProps)(parametersComponent)
+export default ParametersContainer;
