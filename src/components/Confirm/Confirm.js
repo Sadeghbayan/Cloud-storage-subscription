@@ -73,7 +73,7 @@ class Confirm extends Component {
                     <div className="sectionFooter">
                         <Button type="link">
                             <Icon type="left" />
-                            <Link to="/user-information">Back</Link>
+                            <Link to="/credit-card">Back</Link>
                         </Button>
                         <Button type="link" htmlType="submit">
                             Confirm

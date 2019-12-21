@@ -1,21 +1,29 @@
 import React, {Component, Suspense} from 'react';
 import Footer from '../Footer/Footer'
 import Sidebar from '../SideBarMenu/SideBarMenu'
-
+import { connect } from 'react-redux';
 import styles from './App.module.scss'
 import {
-    BrowserRouter as Router,
+    Redirect,
     Switch,
     Route,
-    Link
+    withRouter
 } from "react-router-dom";
 
-import Parameters from '../../components/Parameters/Parameters';
-import UserInformation from '../../components/UserInformation/UserInformation';
 import routes from '../../routes';
+
+const fakeAuth = {
+    authenticate(cb) {
+        if(cb.subscription.length === 0 && cb.location.pathname !== '/')
+            return false
+        return true
+    },
+
+};
 
 class App extends Component {
     loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
+
     render() {
         return (
                 <div>
@@ -34,9 +42,18 @@ class App extends Component {
                                                     path={route.path}
                                                     exact={route.exact}
                                                     name={route.name}
-                                                    render={props => (
-                                                        <route.component {...props} />
-                                                    )} />
+                                                    render={({ props }) =>
+                                                        fakeAuth.authenticate(this.props) ? (
+                                                            <route.component {...props} />
+                                                        ) : (
+                                                            <Redirect
+                                                                to={{
+                                                                    pathname: "/",
+                                                                }}
+                                                            />
+                                                        )
+                                                    }
+                                                />
                                             ) : (null);
                                         })}
 
@@ -51,5 +68,9 @@ class App extends Component {
         );
     }
 }
-
-export default App;
+const mapStateToProps = (state) => {
+    return {
+        subscription: state.subscription,
+    }
+}
+export default withRouter(connect(mapStateToProps, null)(App));

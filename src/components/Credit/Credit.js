@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
 import {Col, Input, Row, DatePicker, Button, Icon, Form} from "antd";
 import moment from 'moment';
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 
-const { MonthPicker, RangePicker } = DatePicker;
+const { MonthPicker } = DatePicker;
 
-const dateFormat = 'YYYY/MM/DD';
 const monthFormat = 'YY/MM';
-
-const dateFormatList = ['DD/MM/YYYY', 'DD/MM/YY'];
 
 const InputGroup = Input.Group;
 class Credit extends Component {
@@ -75,7 +72,7 @@ class Credit extends Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             values.cardNumber = values.cardNumber.split(" ").join("");
-            values.cardExp = values.cardExp._i
+            values.cardExp = values.cardExp.format(monthFormat);
             if (!err) {
                 this.props.addCredit(values);
                 this.props.history.push({
@@ -112,12 +109,12 @@ class Credit extends Component {
                                         <Col span={12}>
                                             <Form.Item label="Card expiration">
                                                 {getFieldDecorator('cardExp', {
-                                                    'initialValue': this.props.credit_info ? this.props.credit_info.cardExp : moment('15/01', monthFormat),
+                                                    'initialValue': this.props.credit_info ? moment(this.props.credit_info.cardExp, monthFormat) : moment('14/01', monthFormat),
                                                     rules: [
                                                         {required: true, message: 'Please input your Card expiration!' },
                                                     ],
                                                 })(
-                                                     <MonthPicker format={monthFormat} />
+                                                     <MonthPicker format={monthFormat}/>
                                                 )}
                                             </Form.Item>
                                         </Col>
@@ -156,4 +153,4 @@ class Credit extends Component {
     }
 }
 
-export default Form.create()(Credit);
+export default withRouter(Form.create()(Credit));

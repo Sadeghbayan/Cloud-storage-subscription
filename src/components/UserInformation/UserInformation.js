@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {Input, Col, Row, Select, InputNumber, DatePicker, AutoComplete, Cascader, Button, Icon, Form} from 'antd';
-import styles from "../Parameters/parameters.module.scss";
-import {Link} from "react-router-dom";
+import {Input, Col, Row, Button, Icon, Form} from 'antd';
+import {Link, withRouter} from "react-router-dom";
 
 const InputGroup = Input.Group;
 const { TextArea } = Input;
@@ -87,4 +86,4 @@ class UserInformation extends Component {
     }
 }
 
-export default Form.create()(UserInformation);
+export default withRouter(Form.create()(UserInformation));

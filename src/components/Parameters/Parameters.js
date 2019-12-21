@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Radio, Button, Icon, Form } from 'antd';
 import styles from './parameters.module.scss'
-
+import { withRouter } from 'react-router-dom';
 
 class Parameters extends Component {
 
@@ -82,4 +82,4 @@ class Parameters extends Component {
     }
 }
 
-export default Form.create()(Parameters);
+export default withRouter(Form.create()(Parameters));
