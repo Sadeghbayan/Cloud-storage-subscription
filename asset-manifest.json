@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Cloud-storage-subscription/static/css/main.9c473277.chunk.css",
+    "main.js": "/Cloud-storage-subscription/static/js/main.7788a6f3.chunk.js",
+    "main.js.map": "/Cloud-storage-subscription/static/js/main.7788a6f3.chunk.js.map",
+    "runtime-main.js": "/Cloud-storage-subscription/static/js/runtime-main.e362e4f7.js",
+    "runtime-main.js.map": "/Cloud-storage-subscription/static/js/runtime-main.e362e4f7.js.map",
+    "static/css/2.7f669fb7.chunk.css": "/Cloud-storage-subscription/static/css/2.7f669fb7.chunk.css",
+    "static/js/2.7623dafb.chunk.js": "/Cloud-storage-subscription/static/js/2.7623dafb.chunk.js",
+    "static/js/2.7623dafb.chunk.js.map": "/Cloud-storage-subscription/static/js/2.7623dafb.chunk.js.map",
+    "index.html": "/Cloud-storage-subscription/index.html",
+    "precache-manifest.9565dea45f5368d0b9261467ce44fb23.js": "/Cloud-storage-subscription/precache-manifest.9565dea45f5368d0b9261467ce44fb23.js",
+    "service-worker.js": "/Cloud-storage-subscription/service-worker.js",
+    "static/css/2.7f669fb7.chunk.css.map": "/Cloud-storage-subscription/static/css/2.7f669fb7.chunk.css.map",
+    "static/css/main.9c473277.chunk.css.map": "/Cloud-storage-subscription/static/css/main.9c473277.chunk.css.map",
+    "static/js/2.7623dafb.chunk.js.LICENSE": "/Cloud-storage-subscription/static/js/2.7623dafb.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e362e4f7.js",
+    "static/css/2.7f669fb7.chunk.css",
+    "static/js/2.7623dafb.chunk.js",
+    "static/css/main.9c473277.chunk.css",
+    "static/js/main.7788a6f3.chunk.js"
+  ]
+}
